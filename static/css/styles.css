@@ -725,6 +725,9 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
     background-color: rgba(100%, 100%, 100%, 0.5);
     border: 3px solid rgba(100%, 100%, 100%, 0.8);
     width: 14%;
+    min-height: 50px;
+    height: 50px;
+    vertical-align: middle;
 }
 
 .project-table {
@@ -756,4 +759,23 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
     font-size: 18px;
     background-color: #28a7454f;
     border: 3px solid #28a7452e;
+}
+
+.budget th {
+    font-size: 16px;
+    font-weight: normal;
+    background-color: #d68a184f;
+    border: 3px solid #28a7452e;
+}
+
+.btn-primary {
+  background-color: #2ca01c;
+  border-width: 4px;
+  border-color: #2ca01c;
+}
+
+
+.qbo-button {
+    background-color: #65d225 !important;
+    border-width: 4px;
 }

@@ -20,16 +20,32 @@ DAYS = [
 MONTH = "May"
 
 GOAL_SALES = 1.05
+GOAL_STAFF = 0.95
+TARGET_STAFF = .25
 
 def projection(request, context={}):
     context['month'] = date.today()
     sales_avg_historical = Sale.objects.all().aggregate(Avg('value'))['value__avg']*7
     sales_avg_month = Sale.objects.filter(month='May').aggregate(Avg('value'))['value__avg']*7
+    sales_forecast = ((sales_avg_month+sales_avg_historical)/2)*GOAL_SALES
     context['sales_avg_historical'] = [sales_avg_historical]
     context['sales_avg_month'] = [sales_avg_month]
-    context['sales_forecast'] = [
-            (((sales_avg_month+sales_avg_historical)/2)*GOAL_SALES)
-    ]
+    context['sales_forecast'] = [sales_forecast]
+
+
+    staff_avg_historical = Resource.objects.all().aggregate(Avg('value'))['value__avg']
+    staff_avg_month = Resource.objects.filter(date__month=5).aggregate(Avg('value'))['value__avg']
+
+    staff_forecast = sales_forecast/7*GOAL_STAFF
+    staff_target = sales_forecast*TARGET_STAFF
+
+    context['staff_avg_historical'] = [staff_avg_historical]
+    context['staff_avg_month'] = [staff_avg_month]
+    context['staff_forecast'] = [staff_forecast]
+    context['staff_target'] = [staff_target]
+
+    context['sales_avg_historical'] = [sales_avg_historical]
+
 
     return render(
         request, 'inputs/projection.html', context

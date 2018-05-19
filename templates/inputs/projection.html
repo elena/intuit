@@ -4,25 +4,101 @@
 
 <h1>Projection</h1>
 
-<p><a>more detail</a></p>
+<p>{{ month|date:"F Y" }}</p>
 
-asterisk
-bolt
-binoculars
+<h3>Rostering Budget</h3>
+
+<table class="main-table white-table project-table">
+
+  <tr>
+    <td>
+      <p>
+      <p>Target <i class="fa fa-crosshairs"></i></p>
+      <span class="big-number">
+        25%
+      </span>
+      </p>
+    </td>
+
+    <td>
+      <p>
+      <p>Goal <i class="fa fa-flag-checkered"></i></p>
+      <span class="big-number">
+        -5%
+      </span>
+      </p>
+    </td>
+
+  </tr>
+
+  {# Forecasted #}
+  <tr class="forecast">
+    <td>
+      Goal Budget <i class="fa fa-bolt"></i>
+    </td>
+    {% for value in staff_forecast %}
+    <th><i class="fa fa-bolt"></i>  {{ value|floatformat:0 }}</th>
+    {% endfor %}
+  </tr>
+
+  <tr class="budget">
+    <td>
+      Target Budget <i class="fa fa-crosshairs"></i>
+    </td>
+    {% for value in staff_target %}
+    <th><i class="fa fa-crosshairs"></i>  {{ value|floatformat:0 }}</th>
+    {% endfor %}
+  </tr>
 
 
-<i class="fa fa-asterisk"></i><br>
-<i class="fa fa-bolt"></i><br>
-<i class="fa fa-binoculars"></i><br>
-<i class="fa fa-chess"></i><br>
-<i class="fa fa-flag-checkered"></i><br>
+</table>
 <br>
-<i class="fa fa-cogs"></i><br>
-<br>
+<table class="main-table white-table project-table">
 
+  {# Sales Average #}
+  <tr>
+    <td>Historical<br>Weekly Average</td>
+    {% for value in staff_avg_historical %}
+    <td>{{ value|floatformat:0 }}</td>
+    {% endfor %}
+  </tr>
+
+  {# Sales Average for just this Month #}
+  <tr>
+    <td><b>{{ month|date:"F" }}</b><br>Weekly Average</td>
+    {% for value in staff_avg_month %}
+    <td>{{ value|floatformat:0 }}</td>
+    {% endfor %}
+  </tr>
+
+</table>
+
+<hr>
 
 <h3>Sales</h3>
 
+<table class="main-table white-table project-table">
+
+  <tr>
+    <td colspan=8>
+      <p>
+      <p>Goal <i class="fa fa-flag-checkered"></i></p>
+      <span class="big-number">
+        +5%
+      </span>
+      </p>
+    </td>
+  </tr>
+
+  {# Forecasted #}
+  <tr class="forecast">
+    <td>Forecasted<br> + Goal <i class="fa fa-bolt"></i> </td>
+    {% for value in sales_forecast %}
+    <th><i class="fa fa-bolt"></i>  {{ value|floatformat:0 }}</th>
+{% endfor %}
+</tr>
+</table>
+<br>
 <table class="main-table white-table project-table">
 
   {# Sales Average #}
@@ -41,72 +117,6 @@ binoculars
     {% endfor %}
   </tr>
 
-  <tr>
-    <td colspan=8>
-      <p>
-      <p>Goal <i class="fa fa-flag-checkered"></i></p>
-      <span class="big-number">
-        +5%
-      </span>
-      </p>
-    </td>
-  </tr>
-
-  {# Forecasted #}
-  <tr class="forecast">
-    <td> <i class="fa fa-bolt"></i> Forecasted<br> + Goal</td>
-    {% for value in sales_forecast %}
-    <th>{{ value|floatformat:0 }}</td>
-    {% endfor %}
-  </tr>
-</table>
-
-
-
-
-
-
-<br><br>
-
-<h3>Payroll</h3>
-
-<table class="main-table white-table">
-  <tr>
-    <th>&nbsp;</th>
-    {% for value in avg_historical %}
-    <th>{{ value }}</th>
-    {% endfor %}
-  </tr>
-
-
-  {# Sales Average #}
-  <tr>
-    <td>Historical Average</td>
-    {% for value in avg_historical %}
-    <th>{{ value|floatformat:0 }}</td>
-    {% endfor %}
-  </tr>
-
-  {# Sales Average for just this Month #}
-  <tr>
-    <td>Average for {{ month }} </td>
-    {% for value in avg_month %}
-    <th>{{ value|floatformat:0 }}</td>
-    {% endfor %}
-  </tr>
-
-  <tr>
-
-
-  </tr>
-
-  {# Forecasted #}
-  <tr>
-    <td><p><i class="fa fa-bolt"></i> Forecasted</p></td>
-    {% for value in forecast %}
-    <th>{{ value|floatformat:0 }}</td>
-    {% endfor %}
-  </tr>
 </table>
 
 {% endblock %}
