@@ -3,6 +3,16 @@ from __future__ import unicode_literals
 from django.db import models
 
 
+class Week(models.Model):
+
+    week = models.IntegerField()
+    start_date = models.DateField()
+    end_date = models.DateField()
+
+    class Meta:
+        ordering = ['-week']
+
+
 class Sale(models.Model):
 
     day = models.CharField(max_length=32)
@@ -10,6 +20,7 @@ class Sale(models.Model):
     month = models.CharField(max_length=32)
     value = models.FloatField()
     week = models.IntegerField()
+    week_fk = models.ForeignKey('inputs.Week', on_delete=models.CASCADE)
 
     class Meta:
         ordering = ['-week']
@@ -18,7 +29,7 @@ class Sale(models.Model):
         return "{}".format(self.date)
 
 
-class Hour(models.Model):
+class Resource(models.Model):
 
     date = models.DateField()
     value = models.FloatField()
