@@ -727,6 +727,11 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
     width: 14%;
 }
 
+.project-table {
+    width: 65%;
+    margin: 0 auto;
+}
+
 .the-number,
 .big-number {
     width: 4em;
@@ -742,7 +747,13 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
 
 
 .big-number {
-    font-size: 40px;
+    font-size: 35px;
     padding: 5px 30px;
     margin: 5px auto;
+}
+
+.forecast th {
+    font-size: 18px;
+    background-color: #28a7454f;
+    border: 3px solid #28a7452e;
 }
