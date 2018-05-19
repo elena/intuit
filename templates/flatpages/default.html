@@ -8,12 +8,16 @@ Intuit <a href="https://sydneysmallbizhack.com">Sydney #smallbizhack</a>
 <p>A solution that saves a small businesses time and money!</p>
 <p>Thanks to <b><a href="telstraapi">TelstraAPI</a></b> also reduces real stress on small business owners.</p>
 
-<p>&nbsp;</p>
-<a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="/periods/">See the Future >> </a>
-<p>&nbsp;</p>
+<p>
+<a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger qbo-button" href="https://appcenter.intuit.com/connect/oauth2?state=None&redirect_uri=http%3A%2F%2Flocalhost%3A8080&response_type=code&client_id=L0zI2E0NapLf0jcJP54HWMSJL7KRKHcFbizNfrhADLz8N9IGrh&scope=com.intuit.quickbooks.accounting">
+  Connect to QBO
+</a>
+</p>
+<br>
+<p>
+  <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="/projection/"><i class="fa fa-bolt"></i> Forecast <i class="fa fa-bolt"></i></a>
+</p>
 
-<p><a>See Last Week</a></p>
-<p><a>See This Week Last Year</a></p>
-<p><a>Full History</a></p>
+<p><a href="{% url 'week_list' %}">Forecast</a></p>
 
 {% endblock %}
