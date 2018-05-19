@@ -727,11 +727,22 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
     width: 14%;
 }
 
+.the-number,
+.big-number {
+    width: 4em;
+    background-color: rgba(100%, 100%, 100%, 0.5);
+    border: 3px solid rgba(100%, 100%, 100%, 0.8);
+}
+
 .the-number {
     font-size: 60px;
     padding: 5px 30px;
     margin: 5px auto;
-    width: 4em;
-    background-color: rgba(100%, 100%, 100%, 0.5);
-    border: 3px solid rgba(100%, 100%, 100%, 0.8);
+}
+
+
+.big-number {
+    font-size: 40px;
+    padding: 5px 30px;
+    margin: 5px auto;
 }

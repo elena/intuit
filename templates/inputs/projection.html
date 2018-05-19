@@ -2,41 +2,114 @@
 
 {% block content %}
 
-<p>{{ object.start_date }} - {{ object.end_date }}</p>
+<h1>Projection</h1>
 <p></p>
 
+asterisk
+bolt
+binoculars
+
+
+<i class="fa fa-asterisk"></i><br>
+<i class="fa fa-bolt"></i><br>
+<i class="fa fa-binoculars"></i><br>
+<i class="fa fa-chess"></i><br>
+<i class="fa fa-flag-checkered"></i><br>
+<br>
+<i class="fa fa-cogs"></i><br>
+<br>
+
+<h3>Sales</h3>
 
 <table class="main-table white-table">
   <tr>
-{% for sale in object.sale_set.all %}
-    <th>{{ sale.day }}</th>
-{% endfor %}
+    <th>&nbsp;</th>
+    {% for value in sales_avg_historical %}
+    <th>{{ value }}</th>
+    {% endfor %}
   </tr>
+
+
+  {# Sales Average #}
   <tr>
-{% for sale in object.sale_set.all %}
-    <td>{{ sale.value|floatformat:0 }}</td>
-{% endfor %}
+    <td>Historical Average</td>
+    {% for value in sales_avg_historical %}
+    <th>{{ value|floatformat:0 }}</td>
+    {% endfor %}
+  </tr>
+
+  {# Sales Average for just this Month #}
+  <tr>
+    <td>Average for <b>{{ month|date:"F" }}</b></td>
+    {% for value in sales_avg_month %}
+    <th>{{ value|floatformat:0 }}</td>
+    {% endfor %}
+  </tr>
+
+  <tr>
+    <td colspan=8>
+      <i class="fa fa-flag-checkered"></i> Set goal:<br><br>
+      <span class="big-number">
+        +5%
+      </span>
+    </td>
+  </tr>
+
+  {# Forecasted #}
+  <tr>
+    <td> <i class="fa fa-bolt"></i> Forecasted <br> + Goal</td>
+    {% for value in forecast %}
+    <th>{{ value|floatformat:0 }}</td>
+    {% endfor %}
   </tr>
 </table>
+
+
+
+
+
+
 <br><br>
 
-The "Number" for this date range:
-<div class="the-number white-table">
-1,234
-</div>
+<h3>Payroll</h3>
 
 <table class="main-table white-table">
   <tr>
-{% for sale in object.sale_set.all %}
-    <th>{{ sale.day }}</th>
-{% endfor %}
+    <th>&nbsp;</th>
+    {% for value in avg_historical %}
+    <th>{{ value }}</th>
+    {% endfor %}
   </tr>
+
+
+  {# Sales Average #}
   <tr>
-{% for sale in object.sale_set.all %}
-    <td>{{ sale.value|floatformat:0 }}</td>
-{% endfor %}
+    <td>Historical Average</td>
+    {% for value in avg_historical %}
+    <th>{{ value|floatformat:0 }}</td>
+    {% endfor %}
+  </tr>
+
+  {# Sales Average for just this Month #}
+  <tr>
+    <td>Average for {{ month }} </td>
+    {% for value in avg_month %}
+    <th>{{ value|floatformat:0 }}</td>
+    {% endfor %}
+  </tr>
+
+  <tr>
+
+
+  </tr>
+
+  {# Forecasted #}
+  <tr>
+    <td> <i class="fa fa-bolt"></i> Forecasted</td>
+    {% for value in forecast %}
+    <th>{{ value|floatformat:0 }}</td>
+    {% endfor %}
   </tr>
 </table>
-
 
 {% endblock %}

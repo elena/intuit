@@ -1,11 +1,42 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+from datetime import date
+from django.db.models import Avg
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from .models import Sale, Resource, Week
 
 
+DAYS = [
+        'Monday',
+        'Tuesday',
+        'Wednesday',
+        'Thursday',
+        'Friday',
+        'Saturday',
+        'Sunday',
+]
+
+
+
+def get_sales():
+    data = []
+    for x in DAYS:
+        data.append(Sale.objects.filter(day=x).aggregate(Avg('value'))['value__avg'])
+    return data
+
+def get_sales_month(month="May"):
+    data = []
+    for x in DAYS:
+        data.append(Sale.objects.filter(day=x, month='May').aggregate(Avg('value'))['value__avg'])
+    return data
+
 def projection(request, context={}):
+    context['month'] = date.today()
+    context['sales_avg_historical'] = get_sales()
+    context['sales_avg_month'] = get_sales_month()
+    context['sales_forecast'] = []
+
     return render(
         request, 'inputs/projection.html', context
     )
