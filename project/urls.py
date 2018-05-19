@@ -28,10 +28,11 @@ urlpatterns = [
         name='week_list',
     ),
 
-    url(r'^period/(?P<pk>\d+)$',
+    url(r'^period/(?P<pk>\d+)/$',
         inputs_views.WeekDetailView.as_view(),
         name='week_detail',
     ),
+
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 
