@@ -20,8 +20,14 @@ from django.contrib import admin
 
 from inputs import views as inputs_views
 
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+
+    url(r'^projection/$',
+        inputs_views.projection,
+        name='projection',
+    ),
 
     url(r'^periods/$',
         inputs_views.WeekListView.as_view(),

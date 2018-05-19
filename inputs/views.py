@@ -1,8 +1,14 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+from django.shortcuts import render
 from django.views.generic import ListView, DetailView
-
 from .models import Sale, Resource, Week
+
+
+def projection(request, context={}):
+    return render(
+        request, 'inputs/projection.html', context
+    )
 
 
 class WeekListView(ListView):
