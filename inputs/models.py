@@ -29,8 +29,17 @@ class Sale(models.Model):
         return "{}".format(self.date)
 
 
+RESOURCE_CHOICES = [
+        ('timesheet_hours', 'timesheet_hours'),
+        ('payroll_cost', 'payroll_cost')
+]
+
 class Resource(models.Model):
 
+    type = models.CharField(max_length=64, choices=RESOURCE_CHOICES)
     week_fk = models.ForeignKey('inputs.Week', on_delete=models.CASCADE)
     date = models.DateField()
     value = models.FloatField()
+
+    class Meta:
+        unique_together = ['date', 'type']
