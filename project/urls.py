@@ -18,7 +18,19 @@ from django.conf.urls import url, include
 from django.conf.urls.static import static
 from django.contrib import admin
 
+from inputs import views as inputs_views
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^/', include('django.contrib.flatpages.urls')),
+
+    url(r'^$',
+        inputs_views.WeekListView.as_view(),
+        name='week_list',
+    ),
+
+    url(r'^(?P<pk>\d+)$',
+        inputs_views.WeekDetailView.as_view(),
+        name='week_detail',
+    ),
+
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
