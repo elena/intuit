@@ -17,30 +17,46 @@ DAYS = [
         'Sunday',
 ]
 
+MONTH = "May"
 
-
-def get_sales():
-    data = []
-    for x in DAYS:
-        data.append(Sale.objects.filter(day=x).aggregate(Avg('value'))['value__avg'])
-    return data
-
-def get_sales_month(month="May"):
-    data = []
-    for x in DAYS:
-        data.append(Sale.objects.filter(day=x, month='May').aggregate(Avg('value'))['value__avg'])
-    return data
+GOAL_SALES = 1.05
 
 def projection(request, context={}):
     context['month'] = date.today()
-    context['sales_avg_historical'] = get_sales()
-    context['sales_avg_month'] = get_sales_month()
-    context['sales_forecast'] = []
+    sales_avg_historical = Sale.objects.all().aggregate(Avg('value'))['value__avg']*7
+    sales_avg_month = Sale.objects.filter(month='May').aggregate(Avg('value'))['value__avg']*7
+    context['sales_avg_historical'] = [sales_avg_historical]
+    context['sales_avg_month'] = [sales_avg_month]
+    context['sales_forecast'] = [
+            (((sales_avg_month+sales_avg_historical)/2)*GOAL_SALES)
+    ]
 
     return render(
         request, 'inputs/projection.html', context
     )
 
+
+def get_sales_by_day():
+    data = []
+    for x in DAYS:
+        data.append(Sale.objects.filter(day=x).aggregate(Avg('value'))['value__avg'])
+    return data
+
+def get_sales_by_day_month(month="May"):
+    data = []
+    for x in DAYS:
+        data.append(Sale.objects.filter(day=x, month='May').aggregate(Avg('value'))['value__avg'])
+    return data
+
+def projection_day(request, context={}):
+    context['month'] = date.today()
+    context['sales_avg_historical'] = get_sales_by_day()
+    context['sales_avg_month'] = get_sales_by_day_month()
+    context['sales_forecast'] = []
+
+    return render(
+        request, 'inputs/projection_day.html', context
+    )
 
 class WeekListView(ListView):
 

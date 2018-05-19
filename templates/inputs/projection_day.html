@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Projection</h1>
+<p></p>
+
+
+
+<h3>Sales</h3>
+
+<table class="main-table white-table">
+  <tr>
+    <th>&nbsp;</th>
+    {% for value in sales_avg_historical %}
+    <th>{{ value }}</th>
+    {% endfor %}
+  </tr>
+
+
+  {# Sales Average #}
+  <tr>
+    <td>Historical Average</td>
+    {% for value in sales_avg_historical %}
+    <th>{{ value|floatformat:0 }}</td>
+    {% endfor %}
+  </tr>
+
+  {# Sales Average for just this Month #}
+  <tr>
+    <td>Average for <b>{{ month|date:"F" }}</b></td>
+    {% for value in sales_avg_month %}
+    <th>{{ value|floatformat:0 }}</td>
+    {% endfor %}
+  </tr>
+
+  <tr>
+    <td colspan=8>
+      <i class="fa fa-flag-checkered"></i> Set goal:<br><>
+      <span class="big-number">
+        +5%
+      </span>
+    </td>
+  </tr>
+
+  {# Forecasted #}
+  <tr>
+    <td> <i class="fa fa-bolt"></i> Forecasted <br> + Goal</td>
+    {% for value in forecast %}
+    <th>{{ value|floatformat:0 }}</td>
+    {% endfor %}
+  </tr>
+</table>
+
+
+
+
+
+
+<br><br>
+
+<h3>Payroll</h3>
+
+<table class="main-table white-table">
+  <tr>
+    <th>&nbsp;</th>
+    {% for value in avg_historical %}
+    <th>{{ value }}</th>
+    {% endfor %}
+  </tr>
+
+
+  {# Sales Average #}
+  <tr>
+    <td>Historical Average</td>
+    {% for value in avg_historical %}
+    <th>{{ value|floatformat:0 }}</td>
+    {% endfor %}
+  </tr>
+
+  {# Sales Average for just this Month #}
+  <tr>
+    <td>Average for {{ month }} </td>
+    {% for value in avg_month %}
+    <th>{{ value|floatformat:0 }}</td>
+    {% endfor %}
+  </tr>
+
+  <tr>
+
+
+  </tr>
+
+  {# Forecasted #}
+  <tr>
+    <td> <i class="fa fa-bolt"></i> Forecasted</td>
+    {% for value in forecast %}
+    <th>{{ value|floatformat:0 }}</td>
+    {% endfor %}
+  </tr>
+</table>
+
+{% endblock %}

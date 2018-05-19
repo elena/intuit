@@ -29,6 +29,12 @@ urlpatterns = [
         name='projection',
     ),
 
+    url(r'^projection/detail/$',
+        inputs_views.projection_day,
+        name='projection_day',
+    ),
+
+
     url(r'^periods/$',
         inputs_views.WeekListView.as_view(),
         name='week_list',
