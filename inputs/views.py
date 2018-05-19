@@ -11,7 +11,7 @@ class WeekListView(ListView):
 
     def get_queryset(self, *args, **kwargs):
         qs = super(WeekListView, self).get_queryset(*args, **kwargs)
-        return qs[:10]
+        return qs[:20]
 
     def get_context_data(self, *args, **kwargs):
         data = super(WeekListView, self).get_context_data(*args, **kwargs)
@@ -21,3 +21,17 @@ class WeekListView(ListView):
 class WeekDetailView(DetailView):
 
     model = Week
+
+    def get_context_data(self, *args, **kwargs):
+        data = super(WeekDetailView, self).get_context_data(*args, **kwargs)
+
+        if Week.objects.filter(pk=self.get_object().pk+1):
+            data['next'] = Week.objects.filter(pk=self.get_object().pk+1)[0]
+        else:
+            data['next'] = None
+
+        if Week.objects.filter(pk=self.get_object().pk-1):
+            data['prev'] = Week.objects.filter(pk=self.get_object().pk-1)[0]
+        else:
+            data['prev'] = None
+        return data

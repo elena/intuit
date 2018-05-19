@@ -2,8 +2,24 @@
 
 {% block content %}
 
+<p>&nbsp;</p>
+<h1>Projection</h1>
+
+<p>&nbsp;</p>
+
+<table class="table table-striped" style="max-width: 600px; margin-left: 40px;">
+  <thead>
+    <tr>
+      <th scope="col">Date Range</th>
+    </tr>
+  </thead>
+  <tbody>
 {% for obj in object_list %}
-  <p>{{ obj.week }}</p>
+    <tr>
+      <td align="left"><a href="/period/{{ obj.pk }}/">{{ obj.start_date }} - {{ obj.end_date }}</a></td>
+    </tr>
 {% endfor %}
+  </tbody>
+</table>
 
 {% endblock %}
