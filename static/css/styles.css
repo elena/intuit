@@ -21,6 +21,7 @@ a:hover {
 }
 
 .content {
+    padding: 40px 20px;
     color: rgb(57, 58, 61);
     background-color: rgba(100%, 100%, 100%, 0.8);
 }
@@ -81,13 +82,13 @@ section h3.section-subheading {
 }
 
 .btn-primary:active, .btn-primary:focus, .btn-primary:hover {
-  background-color: #fec810 !important;
-  border-color: #fec810 !important;
+  background-color: #65d225 !important;
+  border-color: #65d225 !important;
   color: white;
 }
 
 .btn-primary:active, .btn-primary:focus {
-  box-shadow: 0 0 0 0.2rem rgba(254, 209, 55, 0.5) !important;
+  box-shadow: 0 0 0 0.5rem rgba(254, 209, 55, 0.5) !important;
 }
 
 ::-moz-selection {
@@ -183,7 +184,7 @@ header.masthead {
   color: white;
   background-image: url("../img/header-bg.jpg");
   background-repeat: no-repeat;
-  background-attachment: scroll;
+  background-attachment: scroll;<
   background-position: center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -192,7 +193,7 @@ header.masthead {
 }
 
 header.masthead .intro-text {
-  padding-top: 150px;
+  padding-top: 50px;
   padding-bottom: 100px;
   background-color: rgba(80%, 80%, 80%, 0.2);
   border: 1px solid 80%;
@@ -216,7 +217,7 @@ header.masthead .intro-text .intro-heading {
 
 @media (min-width: 768px) {
   header.masthead .intro-text {
-    padding-top: 300px;
+    padding-top: 150px;
     padding-bottom: 200px;
   }
   header.masthead .intro-text .intro-lead-in {
@@ -710,6 +711,6 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
 }
 
 .hero-text {
-    font-family: Roboto;
+   font-family: 'Roboto Slab', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: xx-large;
 }
