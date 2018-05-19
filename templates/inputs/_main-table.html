@@ -1,0 +1,12 @@
+<table class="main-table white-table">
+  <tr>
+{% for sale in object.sale_set.all %}
+    <th>{{ sale.day }}</th>
+{% endfor %}
+  </tr>
+  <tr>
+{% for sale in object.sale_set.all %}
+    <td>{{ sale.value|floatformat:0 }}</td>
+{% endfor %}
+  </tr>
+</table>

@@ -14,7 +14,7 @@
     <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
 
     <!-- Custom fonts for this template -->
-    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
@@ -51,11 +51,8 @@
     <header class="masthead">
       <div class="container">
         <div class="intro-text">
-<div class="content">
-          {% block content %}
-
-          {% endblock %}
-</p>
+          <div class="content">
+          {% block content %}{% endblock %}
         </div>
       </div>
     </header>
@@ -74,10 +71,10 @@
                 Twitter: <a href="https://twitter.com/elequ">@elequ <i class="fa fa-twitter"></i> </a>
               </li>
               <li class="list-inline-item">
-                Github: <a href="https://github.com/elena">github/elena</a>
+                Github: <a href="https://github.com/elena">github/elena <i class="fa fa-github"></i></a>
               </li>
               <li class="list-inline-item">
-                Linkedin: <a href="https://linkedin.com/elenawilliams">elenawilliams</a>
+                Linkedin: <a href="https://linkedin.com/elenawilliams">elenawilliams </a>
               </li>
             </ul>
           </div>
@@ -92,15 +89,15 @@
     <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 
     <!-- Plugin JavaScript -->
-    <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
+    <script src="{% static 'vendor/chartjs/Chart.bundle.js' %}"></script>
 
-    <!-- Contact form JavaScript -->
-    <script src="{% static 'js/jqBootstrapValidation.js' %}"></script>
-    <script src="{% static 'js/contact_me.js' %}"></script>
-
+Chart.bundle.js
     <!-- Custom scripts for this template -->
-    <script src="{% static 'js/agency.min.js' %}"></script>
+    <script src="{% static 'js/scripts.js' %}"></script>
+    <script src="{% static 'js/graph.js' %}"></script>
 
+    {% block scripts %}{% endblock %}
   </body>
 
 </html>
