@@ -6,6 +6,11 @@
 
 <p>{{ month|date:"F Y" }}</p>
 
+<p>
+  <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="/projection/"><i class="fa fa-bolt"></i> Forecast <i class="fa fa-bolt"></i></a>
+</p>
+
+
 <h3>Rostering Budget</h3>
 
 <table class="main-table white-table project-table">
@@ -32,26 +37,31 @@
   </tr>
 
   {# Forecasted #}
-  <tr class="forecast">
-    <td>
-      Goal Budget <i class="fa fa-bolt"></i>
-    </td>
-    {% for value in staff_forecast %}
-    <th><i class="fa fa-bolt"></i>  {{ value|floatformat:0 }}</th>
-    {% endfor %}
-  </tr>
-
-  <tr class="budget">
+  <tr>
     <td>
       Target Budget <i class="fa fa-crosshairs"></i>
     </td>
-    {% for value in staff_target %}
-    <th><i class="fa fa-crosshairs"></i>  {{ value|floatformat:0 }}</th>
-    {% endfor %}
+
+    <td>
+      Goal Budget <i class="fa fa-bolt"></i>
+    </td>
   </tr>
 
+  <tr>
+    {% for value in staff_target %}
+    <th class="budget">
+      <i class="fa fa-crosshairs"></i>  {{ value|floatformat:0 }}</th>
+    {% endfor %}
 
+    {% for value in staff_forecast %}
+    <th class="forecast">
+      <i class="fa fa-bolt"></i>  {{ value|floatformat:0 }}</th>
+    {% endfor %}
+  </tr>
 </table>
+
+
+
 <br>
 <table class="main-table white-table project-table">
 
@@ -91,10 +101,10 @@
   </tr>
 
   {# Forecasted #}
-  <tr class="forecast">
+  <tr>
     <td>Forecasted<br> + Goal <i class="fa fa-bolt"></i> </td>
     {% for value in sales_forecast %}
-    <th><i class="fa fa-bolt"></i>  {{ value|floatformat:0 }}</th>
+    <th class="forecast"><i class="fa fa-bolt"></i>  {{ value|floatformat:0 }}</th>
 {% endfor %}
 </tr>
 </table>
@@ -118,5 +128,117 @@
   </tr>
 
 </table>
+
+<hr>
+
+<div style="width:100%;">
+  <canvas id="canvas"></canvas>
+</div>
+
+<div style="width:100%;">
+  <canvas id="canvas2"></canvas>
+</div>
+
+
+{% endblock %}
+
+
+{% block scripts %}
+<script>
+  var lineChartData = {
+    labels: [{% for sale in graph_labels %} '{{ sale.start_date }}'{% if forloop.last %}{% else %},{% endif %}{% endfor %}],
+    datasets: [{
+        label: 'Multi-scalar Sales v. Payroll',
+      borderColor: window.chartColors.green,
+      backgroundColor: window.chartColors.green,
+      fill: false,
+      data: [{% for sale in graph_sales_weekly %}{{ sale.value__sum }}{% if forloop.last %}{% else %},{% endif %}{% endfor %}],
+    },  {
+      label: 'Payroll',
+      borderColor: window.chartColors.blue,
+      backgroundColor: window.chartColors.blue,
+      fill: false,
+      data: [{% for staff in graph_staff_weekly %}{{ staff.value|floatformat:0 }}{% if forloop.last %}{% else %},{% endif %}{% endfor %}],
+    }]
+  };
+
+window.onload = function() {
+  var ctx = document.getElementById('canvas').getContext('2d');
+  window.myLine = Chart.Line(ctx, {
+    data: lineChartData,
+    options: {
+      responsive: true,
+      hoverMode: 'index',
+      stacked: false,
+      title: {
+        display: true,
+        text: 'Sales'
+      },
+      scales: {
+          yAxes: [
+              {
+          type: 'linear',
+          display: true,
+          position: 'left'
+        }],
+      }
+    }
+  });};
+
+  var lineChartData2 = {
+    labels: [{% for sale in graph_labels %} '{{ sale.start_date }}'{% if forloop.last %}{% else %},{% endif %}{% endfor %}],
+    datasets: [{
+        label: 'Multi-scalar Sales v. Payroll',
+      borderColor: window.chartColors.green,
+      backgroundColor: window.chartColors.green,
+      fill: false,
+      data: [{% for sale in graph_sales_weekly %}{{ sale.value__sum }}{% if forloop.last %}{% else %},{% endif %}{% endfor %}],
+      yAxisID: 'y-axis-1',
+    },  {
+      label: 'Payroll',
+      borderColor: window.chartColors.blue,
+      backgroundColor: window.chartColors.blue,
+      fill: false,
+      data: [{% for staff in graph_staff_weekly %}{{ staff.value|floatformat:0 }}{% if forloop.last %}{% else %},{% endif %}{% endfor %}],
+      yAxisID: 'y-axis-2'
+    }]
+  };
+
+window.onload = function() {
+  var ctx = document.getElementById('canvas2').getContext('2d');
+  window.myLine = Chart.Line(ctx, {
+    data: lineChartData2,
+    options: {
+      responsive: true,
+      hoverMode: 'index',
+      stacked: false,
+      title: {
+        display: true,
+        text: 'Sales'
+      },
+      scales: {
+          yAxes: [
+              {
+          type: 'linear',
+          display: true,
+          position: 'left',
+          id: 'y-axis-1',
+        }, {
+          type: 'linear',
+          display: true,
+          position: 'left',
+          id: 'y-axis-2',
+
+          // grid line settings
+          gridLines: {
+            drawOnChartArea: false,
+          },
+        }],
+      }
+    }
+  });};
+
+
+</script>
 
 {% endblock %}

@@ -42,4 +42,7 @@ class Resource(models.Model):
     value = models.FloatField()
 
     class Meta:
-        unique_together = ['date', 'type']
+            unique_together = ['date', 'type']
+
+    def __str__(self):
+        return "{} {} {}".format(self.date, self.type, self.value)

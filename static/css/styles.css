@@ -717,14 +717,14 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
 .main-table {
     background-color: rgba(100%, 100%, 100%, 0.5);
     border: 4px solid white;
-    width: 95%;
+    width: 100%;
 }
 
 .white-table td,
 .white-table th {
     background-color: rgba(100%, 100%, 100%, 0.5);
     border: 3px solid rgba(100%, 100%, 100%, 0.8);
-    width: 14%;
+    width: 12%;
     min-height: 50px;
     height: 50px;
     vertical-align: middle;
@@ -755,13 +755,13 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
     margin: 5px auto;
 }
 
-.forecast th {
+th.forecast {
     font-size: 18px;
     background-color: #28a7454f;
     border: 3px solid #28a7452e;
 }
 
-.budget th {
+th.budget {
     font-size: 16px;
     font-weight: normal;
     background-color: #d68a184f;
@@ -778,4 +778,12 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
 .qbo-button {
     background-color: #65d225 !important;
     border-width: 4px;
+}
+
+.good {
+    background-color: #28a7454f;
+}
+
+.bad {
+    background-color: #d68a184f;
 }
