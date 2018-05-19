@@ -31,5 +31,6 @@ class Sale(models.Model):
 
 class Resource(models.Model):
 
+    week_fk = models.ForeignKey('inputs.Week', on_delete=models.CASCADE)
     date = models.DateField()
     value = models.FloatField()
