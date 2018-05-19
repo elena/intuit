@@ -23,14 +23,20 @@ from inputs import views as inputs_views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
-    url(r'^$',
+    url(r'^periods/$',
         inputs_views.WeekListView.as_view(),
         name='week_list',
     ),
 
-    url(r'^(?P<pk>\d+)$',
+    url(r'^period/(?P<pk>\d+)$',
         inputs_views.WeekDetailView.as_view(),
         name='week_detail',
     ),
-
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns = [
+        url(r'^__debug__/', include(debug_toolbar.urls)),
+    ] + urlpatterns
