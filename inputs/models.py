@@ -15,7 +15,8 @@ class Sale(models.Model):
         ordering = ['-week']
 
     def __str__(self):
-            return self.date
+        return "{}".format(self.date)
+
 
 class Hour(models.Model):
 
